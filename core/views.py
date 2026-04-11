@@ -1,6 +1,33 @@
 from django.shortcuts import render
-from .models import Empresa
+from .models import Empresa, Obrigacao, Tarefa, Competencia
 
-def lista_empresas(request):
+def dashboard(request):
+    competencia = Competencia.objects.first()
     empresas = Empresa.objects.all()
-    return render(request, 'core/lista_empresas.html', {'empresas': empresas})
+    obrigacoes = Obrigacao.objects.all()
+
+    tarefas = Tarefa.objects.filter(competencia=competencia)
+
+    tabela = []
+
+    for empresa in empresas:
+        linha = {
+            "empresa": empresa,
+            "tarefas": []
+        }
+
+        for obrigacao in obrigacoes:
+            tarefa = tarefas.filter(
+                empresa=empresa,
+                obrigacao=obrigacao
+            ).first()
+
+            linha["tarefas"].append(tarefa)
+
+        tabela.append(linha)
+
+    return render(request, 'core/dashboard.html', {
+        'tabela': tabela,
+        'obrigacoes': obrigacoes,
+        'competencias': competencia
+    })

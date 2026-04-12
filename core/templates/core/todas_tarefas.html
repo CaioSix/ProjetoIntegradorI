@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Todas as Tarefas</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Todas as Tarefas</h2>
+
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary mb-3">
+        Voltar ao Dashboard
+    </a>
+
+    <form method="get" class="mb-3">
+        <div class="row">
+
+            <div class="col-md-3">
+                <select name="filtro" class="form-select">
+                    <option value="">Todas</option>
+
+                    <option value="urgentes" {% if filtro == 'urgentes' %}selected{% endif %}>
+                        Urgentes
+                    </option>
+
+                    <option value="proximas" {% if filtro == 'proximas' %}selected{% endif %}>
+                        Próximas
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">
+                    Filtrar
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+            <tr>
+                <th>Empresa</th>
+                <th>Obrigação</th>
+                <th>Status</th>
+                <th>Prazo</th>
+                <th>Prioridade</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for item in tarefas %}
+                <tr>
+
+                    <td>
+                        {{ item.tarefa.empresa.nome }}<br>
+                        <small>{{ item.tarefa.empresa.codigo }}</small>
+                    </td>
+
+                    <td>
+                        {{ item.tarefa.obrigacao.nome }}
+                    </td>
+
+                    <td>
+                        {% if item.tarefa.status == 'OK' %}
+                            <span class="badge bg-success">OK</span>
+                        {% else %}
+                            <span class="badge bg-danger">Pendente</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if item.tarefa.prazo %}
+                            {{ item.tarefa.prazo|date:"d/m/Y" }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if item.prioridade == 'urgente' %}
+                            <span class="badge bg-danger">Urgente</span>
+
+                        {% elif item.prioridade == 'proxima' %}
+                            <span class="badge bg-warning text-dark">Próxima</span>
+
+                        {% else %}
+                            <span class="badge bg-secondary">Normal</span>
+                        {% endif %}
+                    </td>
+
+                </tr>
+
+            {% empty %}
+                <tr>
+                    <td colspan="5">Nenhuma tarefa encontrada</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

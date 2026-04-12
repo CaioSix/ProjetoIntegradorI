@@ -19,3 +19,12 @@ def tarefas_proximas():
 def tarefas_urgentes():
     hoje = date.today()
     return Tarefa.objects.filter(status='PENDENTE', prazo__lte=hoje)
+
+def tarefas_normais():
+    hoje = date.today()
+    limite = hoje + timedelta(days=7)
+
+    return Tarefa.objects.filter(
+        status='PENDENTE',
+        prazo__gt=limite
+    )

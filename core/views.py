@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from datetime import date, timedelta
 from .models import Empresa, Obrigacao, Tarefa, Competencia
-from .utils import empresa_completa
+from .utils import empresa_completa, tarefas_normais, tarefas_proximas, tarefas_urgentes
 
 def dashboard(request):
     competencia = Competencia.objects.order_by('-ano', '-mes').first()
@@ -54,4 +55,39 @@ def lista_tarefas(request, empresa_id):
     return render(request, 'core/tarefas.html', {
         'empresa': empresa,
         'tarefas': tarefas
+    })
+
+def todas_tarefas(request):
+    filtro = request.GET.get('filtro')
+
+    tarefas = []
+
+    for t in tarefas_urgentes().select_related('empresa', 'obrigacao').order_by('prazo'):
+        tarefas.append({
+            'tarefa': t,
+            'prioridade': 'urgente'
+        })
+
+    for t in tarefas_proximas().select_related('empresa', 'obrigacao').order_by('prazo'):
+        tarefas.append({
+            'tarefa': t,
+            'prioridade': 'proxima'
+        })
+
+    if not filtro:
+        for t in tarefas_normais().select_related('empresa', 'obrigacao').order_by('prazo'):
+            tarefas.append({
+                'tarefa': t,
+                'prioridade': 'normal'
+            })
+
+    if filtro == 'urgentes':
+        tarefas = [t for t in tarefas if t['prioridade'] == 'urgente']
+
+    elif filtro == 'proximas':
+        tarefas = [t for t in tarefas if t['prioridade'] == 'proxima']
+
+    return render(request, 'core/todas_tarefas.html', {
+        'tarefas': tarefas,
+        'filtro': filtro
     })

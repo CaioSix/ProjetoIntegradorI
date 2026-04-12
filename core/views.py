@@ -46,3 +46,12 @@ def dashboard(request):
         'obrigacoes': obrigacoes,
         'competencias': competencia
     })
+
+def lista_tarefas(request, empresa_id):
+    empresa = Empresa.objects.get(id=empresa_id)
+    tarefas = Tarefa.objects.filter(empresa=empresa)
+
+    return render(request, 'core/tarefas.html', {
+        'empresa': empresa,
+        'tarefas': tarefas
+    })

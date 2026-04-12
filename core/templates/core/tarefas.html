@@ -1,0 +1,21 @@
+<h2>Tarefas - {{ empresa.nome }}</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Obrigação</th>
+            <th>Status</th>
+            <th>Prazo</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for tarefa in tarefas %}
+        <tr>
+            <td>{{ tarefa.obrigacao.nome }}</td>
+            <td>{{ tarefa.status }}</td>
+            <td>{{ tarefa.prazo }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

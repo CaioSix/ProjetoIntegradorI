@@ -1,5 +1,10 @@
 <h2>Tarefas - {{ empresa.nome }}</h2>
 
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button class="btn btn-danger">Sair</button>
+</form>
+
 <table class="table">
     <thead>
         <tr>

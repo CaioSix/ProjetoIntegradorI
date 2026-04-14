@@ -2,7 +2,9 @@ from django.shortcuts import render
 from datetime import date, timedelta
 from .models import Empresa, Obrigacao, Tarefa, Competencia
 from .utils import empresa_completa, tarefas_normais, tarefas_proximas, tarefas_urgentes
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def dashboard(request):
     competencia = Competencia.objects.order_by('-ano', '-mes').first()
     empresas = Empresa.objects.all()
@@ -48,6 +50,7 @@ def dashboard(request):
         'competencias': competencia
     })
 
+@login_required
 def lista_tarefas(request, empresa_id):
     empresa = Empresa.objects.get(id=empresa_id)
     tarefas = Tarefa.objects.filter(empresa=empresa)
@@ -57,6 +60,7 @@ def lista_tarefas(request, empresa_id):
         'tarefas': tarefas
     })
 
+@login_required
 def todas_tarefas(request):
     filtro = request.GET.get('filtro')
 

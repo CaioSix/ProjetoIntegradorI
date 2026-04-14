@@ -12,6 +12,11 @@
 
     <h2 class="mb-4">Todas as Tarefas</h2>
 
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn btn-danger">Sair</button>
+    </form>
+
     <a href="{% url 'dashboard' %}" class="btn btn-secondary mb-3">
         Voltar ao Dashboard
     </a>

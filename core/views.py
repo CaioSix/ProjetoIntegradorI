@@ -1,12 +1,20 @@
 from django.shortcuts import render
 from datetime import date, timedelta
 from .models import Empresa, Obrigacao, Tarefa, Competencia
-from .utils import empresa_completa, tarefas_normais, tarefas_proximas, tarefas_urgentes
+from .utils import (
+    empresa_completa,
+    tarefas_normais,
+    tarefas_proximas,
+    tarefas_urgentes,
+    gerar_competencia_atual
+)
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 @login_required
 def dashboard(request):
-    competencia = Competencia.objects.order_by('-ano', '-mes').first()
+    competencia = gerar_competencia_atual()
     empresas = Empresa.objects.all()
     obrigacoes = Obrigacao.objects.all()
 

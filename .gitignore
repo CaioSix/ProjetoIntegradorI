@@ -1,0 +1,68 @@
+# =========================
+# PYTHON / DJANGO
+# =========================
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+
+# Virtualenv
+venv/
+.env/
+.env
+
+# Django stuff
+*.log
+media/
+staticfiles/
+
+# =========================
+# MIGRATIONS (opcional)
+# =========================
+# NÃO ignore migrations em produção
+# Para PI pode manter versionado
+# core/migrations/__pycache__/
+
+# =========================
+# IDE / EDITOR
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# SISTEMA OPERACIONAL
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# REACT / FRONTEND
+# =========================
+node_modules/
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# CACHE / TEMP
+# =========================
+.cache/
+*.tmp
+
+# =========================
+# TESTES
+# =========================
+.coverage
+htmlcov/
+
+# =========================
+# MISC
+# =========================
+*.bak
+*.old

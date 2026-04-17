@@ -1,5 +1,6 @@
-from .models import Tarefa
+from .models import Tarefa, Competencia, Empresa, Obrigacao, TipoEmpresaObrigacao
 from datetime import date, timedelta
+import calendar
 
 def empresa_completa(empresa, competencia):
     tarefas = Tarefa.objects.filter(empresa=empresa, competencia=competencia)
@@ -28,3 +29,43 @@ def tarefas_normais():
         status='PENDENTE',
         prazo__gt=limite
     )
+
+def gerar_competencia_atual():
+    hoje = date.today()
+    mes = hoje.month
+    ano = hoje.year
+
+    competencia, criada = Competencia.objects.get_or_create(
+        mes=mes,
+        ano=ano
+    )
+
+    if not criada:
+        return competencia
+        
+    empresas = Empresa.objects.all()
+
+    for empresa in empresas:
+        relacoes = TipoEmpresaObrigacao.objects.filter(tipo_empresa=empresa.tipo)
+
+        for rel in relacoes:
+            obrigacao = rel.obrigacao
+
+            prazo = None
+
+            if obrigacao.dia_vencimento:
+                ultimo_dia = calendar.monthrange(ano, mes)[1]
+                dia = min(obrigacao.dia_vencimento, ultimo_dia)
+                prazo = date(ano, mes, dia)
+
+            Tarefa.objects.get_or_create(
+                empresa=empresa,
+                competencia=competencia,
+                obrigacao=obrigacao,
+                defaults={
+                    "status": "PENDENTE",
+                    "prazo": prazo
+                }
+            )
+
+    return competencia

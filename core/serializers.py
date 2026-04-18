@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.validators import UniqueTogetherValidator
 from .models import Empresa, Competencia, Obrigacao, Tarefa
 
 class EmpresaSerializer(serializers.ModelSerializer):
@@ -20,3 +21,9 @@ class TarefaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tarefa
         fields = '__all__'
+        validators = [
+            UniqueTogetherValidator(
+                queryset=Tarefa.objects.all(),
+                fields=['empresa', 'competencia', 'obrigacao']
+            )
+        ]

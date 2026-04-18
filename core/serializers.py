@@ -24,19 +24,19 @@ class TarefaSerializer(serializers.ModelSerializer):
 
     empresa_id = serializers.PrimaryKeyRelatedField(
         queryset=Empresa.objects.all(),
-        souce='empresa',
+        source='empresa',
         write_only=True
     )
 
     obrigacao_id = serializers.PrimaryKeyRelatedField(
         queryset=Obrigacao.objects.all(),
-        souce='obrigacao',
+        source='obrigacao',
         write_only=True
     )
 
     competencia_id = serializers.PrimaryKeyRelatedField(
         queryset=Competencia.objects.all(),
-        souce='competencia',
+        source='competencia',
         write_only=True
     )
 

@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from django.db.models import F
 from .models import (
     Empresa,
     Competencia,
@@ -13,7 +15,7 @@ from .serializers import (
 )
 
 class EmpresaViewSet(viewsets.ModelViewSet):
-    queryset = Empresa.objects.all()
+    queryset = Empresa.objects.all().order_by('nome')
     serializer_class = EmpresaSerializer
 
 class CompetenciaViewSet(viewsets.ModelViewSet):
@@ -25,5 +27,7 @@ class ObrigacaoViewSet(viewsets.ModelViewSet):
     serializer_class = ObrigacaoSerializer
 
 class TarefaViewSet(viewsets.ModelViewSet):
-    queryset = Tarefa.objects.all()
+    queryset = Tarefa.objects.select_related('empresa', 'obrigacao', 'competencia').order_by(F('prazo').asc(nulls_last=True))
     serializer_class = TarefaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterser_fields = ['status', 'empresa', 'competencia', 'obrigacao']

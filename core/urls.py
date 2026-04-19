@@ -5,7 +5,8 @@ from .api_views import (
     EmpresaViewSet,
     CompetenciaViewSet,
     ObrigacaoViewSet,
-    TarefaViewSet
+    TarefaViewSet,
+    dashboard_api
 )
 from django.contrib.auth import views as auth_views
 
@@ -21,5 +22,6 @@ urlpatterns = [
     path('tarefas/<int:empresa_id>/', lista_tarefas, name='tarefas'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('api/dashboard/', dashboard_api),
     path('api/', include(router.urls)),
 ]

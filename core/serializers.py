@@ -49,3 +49,10 @@ class TarefaSerializer(serializers.ModelSerializer):
                 fields=['empresa', 'competencia', 'obrigacao']
             )
         ]
+
+class TarefaDashboardSerializer(serializers.ModelSerializer):
+    obrigacao_nome =serializers.CharField(source='obrigacao.nome')
+
+    class Meta:
+        model = Tarefa
+        fields = ['id', 'obrigacao_nome', 'status', 'prazo']

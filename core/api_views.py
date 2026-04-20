@@ -3,7 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Prefetch
 from django_filters.rest_framework import DjangoFilterBackend
-from django.db.models import F
+from django.db.models import F, Case, When, IntegerField, Value
+from datetime import date, timedelta
 from .models import (
     Empresa,
     Competencia,
@@ -64,4 +65,26 @@ def dashboard_api(request):
 
     return Response({
         "empresas": resultado
+    })
+
+@api_view(['GET'])
+def tarefas_geral(request):
+    hoje = date.today()
+    limite = hoje + timedelta(days=7)
+
+    tarefas = Tarefa.objects.select_related('empresa', 'obrigacao', 'competencia').filter(status='PENDENTE')
+
+    tarefas = tarefas.annotate(
+        prioridade=Case(
+            When(prazo__lt=hoje, then=Value(1)),
+            When(prazo=hoje, then=Value(2)),
+            When(prazo__lte=limite, then=Value(3)),
+            When(prazo__isnull=True, then=Value(5)),
+            default=Value(4),
+            output_field=IntegerField()
+        )
+    ).order_by('prioridade', 'prazo')
+
+    return Response({
+        "tarefas": TarefaSerializer(tarefas, many=True).data
     })

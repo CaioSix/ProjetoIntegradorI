@@ -18,37 +18,12 @@ class ObrigacaoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TarefaSerializer(serializers.ModelSerializer):
-    empresa = EmpresaSerializer(read_only=True)
-    obrigacao = ObrigacaoSerializer(read_only=True)
-    competencia = CompetenciaSerializer(read_only=True)
-
-    empresa_id = serializers.PrimaryKeyRelatedField(
-        queryset=Empresa.objects.all(),
-        source='empresa',
-        write_only=True
-    )
-
-    obrigacao_id = serializers.PrimaryKeyRelatedField(
-        queryset=Obrigacao.objects.all(),
-        source='obrigacao',
-        write_only=True
-    )
-
-    competencia_id = serializers.PrimaryKeyRelatedField(
-        queryset=Competencia.objects.all(),
-        source='competencia',
-        write_only=True
-    )
+    empresa_nome = serializers.CharField(source='empresa.nome')
+    obrigacao_nome = serializers.CharField(source='obrigacao.nome')
 
     class Meta:
         model = Tarefa
-        fields = '__all__'
-        validators = [
-            UniqueTogetherValidator(
-                queryset=Tarefa.objects.all(),
-                fields=['empresa', 'competencia', 'obrigacao']
-            )
-        ]
+        fields = ['id', 'obrigacao_nome', 'status', 'prazo', 'empresa_nome']
 
 class TarefaDashboardSerializer(serializers.ModelSerializer):
     obrigacao_nome =serializers.CharField(source='obrigacao.nome')

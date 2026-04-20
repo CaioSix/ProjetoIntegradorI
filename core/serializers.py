@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 from .models import Empresa, Competencia, Obrigacao, Tarefa
+from django.utils import timezone
 
 class EmpresaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,10 +21,23 @@ class ObrigacaoSerializer(serializers.ModelSerializer):
 class TarefaSerializer(serializers.ModelSerializer):
     empresa_nome = serializers.CharField(source='empresa.nome')
     obrigacao_nome = serializers.CharField(source='obrigacao.nome')
+    status_prazo = serializers.SerializerMethodField(method_name='calcular_prazo_status')
 
     class Meta:
         model = Tarefa
-        fields = ['id', 'obrigacao_nome', 'status', 'prazo', 'empresa_nome']
+        fields = ['id', 'obrigacao_nome', 'status', 'status_prazo', 'prazo', 'empresa_nome']
+
+    def calcular_prazo_status(self, obj):
+        if not obj.prazo:
+            return "Sem prazo"
+        hoje = timezone.localdate()
+        delta = (obj.prazo - hoje).days
+        if delta < 0:
+            return f"{abs(delta)} dias de atraso"
+        elif delta == 0:
+            return "Prazo é hoje"
+        else:
+            return f"{delta} dias para o prazo"
 
 class TarefaDashboardSerializer(serializers.ModelSerializer):
     obrigacao_nome =serializers.CharField(source='obrigacao.nome')

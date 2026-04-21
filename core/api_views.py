@@ -1,10 +1,11 @@
-from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework import viewsets, status
+from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from django.db.models import Prefetch
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import F, Case, When, IntegerField, Value
 from datetime import date, timedelta
+from django.utils import timezone
 from .models import (
     Empresa,
     Competencia,
@@ -37,6 +38,81 @@ class TarefaViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['status', 'empresa', 'competencia', 'obrigacao']
 
+    @action(detail=True, methods=['patch'])
+    def concluir(self, request, pk=None):
+        tarefa = self.get_object()
+
+        if tarefa.status == 'CONCLUIDA':
+            return Response(
+                {"erro": "Tarefa já está concluída"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        if tarefa.status == 'DISPENSADA':
+            return Response(
+                {"erro": "Tarefa dispensada não pode ser reaberta"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        tarefa.status = 'CONCLUIDA'
+        tarefa.concluida_em = timezone.localdate()
+        tarefa.save()
+
+        return Response({
+            "mensagem": "Tarefa concluída com sucesso",
+            "id": tarefa.id,
+            "status": tarefa.status,
+            "concluida_em": tarefa.concluida_em
+        })
+    
+    @action(detail=True, methods=['patch'])
+    def reabrir(self, request, pk=None):
+        tarefa = self.get_object()
+
+        if tarefa.status == 'PENDENTE':
+            return Response(
+                {"erro": "Tarefa já está pendente"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        if tarefa.status == 'DISPENSADA':
+            return Response(
+                {"erro": "Tarefa dispensada não pode ser reaberta"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        tarefa.status = 'PENDENTE'
+        tarefa.concluida_em = None
+        tarefa.save()
+
+        return Response({
+            "mensagem": "Tarefa reaberta com sucesso",
+            "id": tarefa.id,
+            "status": tarefa.status,
+            "concluida_em": tarefa.concluida_em
+        })
+    
+    @action(detail=True, methods=['patch'])
+    def dispensar(self, request, pk=None):
+        tarefa = self.get_object()
+
+        if tarefa.status == 'DISPENSADA':
+            return Response(
+                {"erro": "Tarefa já está dispensada"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        tarefa.status = 'DISPENSADA'
+        tarefa.concluida_em = None
+        tarefa.save()
+
+        return Response({
+            "mensagem": "Tarefa dispensada com sucesso",
+            "id": tarefa.id,
+            "status": tarefa.status,
+            "concluida_em": tarefa.concluida_em
+        })
+
 @api_view(['GET'])
 def dashboard_api(request):
     empresas = Empresa.objects.prefetch_related(
@@ -59,7 +135,7 @@ def dashboard_api(request):
             "nome": empresa.nome,
             "tipo": empresa.tipo,
             "pendentes": tarefas.filter(status='PENDENTE').count(),
-            "concluidas": tarefas.filter(status='OK').count(),
+            "concluidas": tarefas.filter(status='CONCLUIDA').count(),
             "tarefas": TarefaDashboardSerializer(tarefas, many=True).data
         })
 

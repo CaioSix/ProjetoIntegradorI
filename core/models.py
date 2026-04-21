@@ -41,14 +41,16 @@ class Obrigacao(models.Model):
 class Tarefa(models.Model):
     STATUS_CHOICE = [
         ('PENDENTE', 'Pendente'),
-        ('OK', 'Concluído'),
+        ('CONCLUIDA', 'Concluída'),
+        ('DISPENSADA', 'Dispensada')
     ]
 
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='tarefas')
     competencia = models.ForeignKey(Competencia, on_delete=models.CASCADE, related_name='tarefas')
     obrigacao = models.ForeignKey(Obrigacao, on_delete=models.CASCADE, related_name='tarefas')
-    status = models.CharField(max_length=10, choices=STATUS_CHOICE, default='PENDENTE')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICE, default='PENDENTE')
     prazo = models.DateField(null=True, blank=True)
+    concluida_em = models.DateField(null=True, blank=True)
     criada_em = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
     atualizada_em = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
 

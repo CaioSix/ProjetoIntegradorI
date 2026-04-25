@@ -6,10 +6,12 @@ from .api_views import (
     CompetenciaViewSet,
     ObrigacaoViewSet,
     TarefaViewSet,
+    LoginView,
     dashboard_api,
-    tarefas_geral
+    tarefas_geral,
 )
 from django.contrib.auth import views as auth_views
+from knox import views as knox_views
 
 router = DefaultRouter()
 router.register(r'empresas', EmpresaViewSet)
@@ -26,4 +28,6 @@ urlpatterns = [
     path('api/dashboard/', dashboard_api),
     path('api/tarefas_geral', tarefas_geral),
     path('api/', include(router.urls)),
+    path('api/login/', LoginView.as_view()),
+    path('api/logout/', knox_views.LogoutView.as_view()),
 ]

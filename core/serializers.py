@@ -28,7 +28,7 @@ class TarefaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tarefa
-        fields = ['id', 'empresa_id', 'obrigacao_nome', 'obrigacao_id', 'obrigacao_nomedias','status', 'status_prazo', 'prazo', 'prazo_formatado','empresa_nome']
+        fields = ['id', 'empresa_id', 'empresa_nome', 'obrigacao_nome', 'obrigacao_id', 'obrigacao_nome','status', 'status_prazo', 'prazo', 'prazo_formatado',]
         read_only_fields = ['status', 'concluida_em']
 
     def calcular_prazo_status(self, obj):

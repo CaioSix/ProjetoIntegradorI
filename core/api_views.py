@@ -21,6 +21,7 @@ from .serializers import (
 )
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework import permissions
+from rest_framework.pagination import PageNumberPagination
 from django.contrib.auth import login
 from knox.views import LoginView as KnoxLoginView
 
@@ -55,7 +56,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
     filterset_fields = ['status', 'empresa', 'competencia', 'obrigacao']
 
     @action(detail=True, methods=['patch'])
-    def concluir(self, request, pk=None):
+    def concluir(self, request, pk=None, pagination_class=None):
         tarefa = self.get_object()
 
         if tarefa.status == 'CONCLUIDA':
@@ -81,7 +82,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
             "concluida_em": tarefa.concluida_em
         })
     
-    @action(detail=True, methods=['patch'])
+    @action(detail=True, methods=['patch'], pagination_class=None)
     def reabrir(self, request, pk=None):
         tarefa = self.get_object()
 
@@ -108,7 +109,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
             "concluida_em": tarefa.concluida_em
         })
     
-    @action(detail=True, methods=['patch'])
+    @action(detail=True, methods=['patch'], pagination_class=None)
     def dispensar(self, request, pk=None):
         tarefa = self.get_object()
 
@@ -161,7 +162,7 @@ def dashboard_api(request):
 
 @api_view(['GET'])
 def tarefas_geral(request):
-    hoje = date.today()
+    hoje = timezone.localdate()
     limite = hoje + timedelta(days=7)
 
     tarefas = Tarefa.objects.select_related('empresa', 'obrigacao', 'competencia').filter(status='PENDENTE')
@@ -177,6 +178,10 @@ def tarefas_geral(request):
         )
     ).order_by('prioridade', 'prazo')
 
-    return Response({
-        "tarefas": TarefaSerializer(tarefas, many=True).data
-    })
+    paginator = PageNumberPagination()
+    paginator.page_size = 20
+    paginator.page_size_query_param = 'page_size'
+    page = paginator.paginate_queryset(tarefas, request)
+    serializer = TarefaSerializer(page, many=True)
+
+    return paginator.get_paginated_response(serializer.data)

@@ -77,7 +77,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         return Response({
             "mensagem": "Tarefa concluída com sucesso",
-            "data": {
+            "dados": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em
@@ -106,7 +106,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         return Response({
             "mensagem": "Tarefa reaberta com sucesso",
-            "data": {
+            "dados": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em
@@ -129,7 +129,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         return Response({
             "mensagem": "Tarefa dispensada com sucesso",
-            "data": {
+            "dados": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em

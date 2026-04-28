@@ -26,10 +26,11 @@ class TarefaSerializer(serializers.ModelSerializer):
     status_prazo = serializers.SerializerMethodField(method_name='calcular_prazo_status', read_only=True)
     prazo_formatado = serializers.SerializerMethodField(method_name='formata_prazo', read_only=True)
     dias_prazo = serializers.SerializerMethodField(method_name='dias_prazo')
+    prioridade = serializers.IntegerField(read_only=True, default=4)
 
     class Meta:
         model = Tarefa
-        fields = ['id', 'empresa_id', 'empresa_nome', 'obrigacao_nome', 'obrigacao_id', 'obrigacao_nome','status', 'status_prazo', 'prazo', 'prazo_formatado', 'dias_prazo']
+        fields = ['id', 'empresa_id', 'empresa_nome', 'obrigacao_nome', 'obrigacao_id', 'obrigacao_nome','status', 'status_prazo', 'prazo', 'prazo_formatado', 'dias_prazo', 'prioridade']
         read_only_fields = ['status', 'concluida_em']
 
     def calcular_prazo_status(self, obj):

@@ -61,13 +61,13 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         if tarefa.status == 'CONCLUIDA':
             return Response(
-                {"message": "Tarefa já está concluída"},
+                {"mensagem": "Tarefa já está concluída"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
         if tarefa.status == 'DISPENSADA':
             return Response(
-                {"message": "Tarefa dispensada não pode ser reaberta"},
+                {"mensagem": "Tarefa dispensada não pode ser reaberta"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
@@ -90,13 +90,13 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         if tarefa.status == 'PENDENTE':
             return Response(
-                {"message": "Tarefa já está pendente"},
+                {"mensagem": "Tarefa já está pendente"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
         if tarefa.status == 'DISPENSADA':
             return Response(
-                {"message": "Tarefa dispensada não pode ser reaberta"},
+                {"mensagem": "Tarefa dispensada não pode ser reaberta"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
@@ -119,7 +119,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         if tarefa.status == 'DISPENSADA':
             return Response(
-                {"message": "Tarefa já está dispensada"},
+                {"mensagem": "Tarefa já está dispensada"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         

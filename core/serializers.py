@@ -25,7 +25,7 @@ class TarefaSerializer(serializers.ModelSerializer):
     obrigacao_id = serializers.IntegerField(source='obrigacao.id', read_only=True)
     status_prazo = serializers.SerializerMethodField(method_name='calcular_prazo_status', read_only=True)
     prazo_formatado = serializers.SerializerMethodField(method_name='formata_prazo', read_only=True)
-    dias_prazo = serializers.SerializerMethodField(method_name='dias_prazo')
+    dias_prazo = serializers.SerializerMethodField(method_name='dias_para_prazo')
     prioridade = serializers.IntegerField(read_only=True, default=4)
 
     class Meta:
@@ -50,7 +50,7 @@ class TarefaSerializer(serializers.ModelSerializer):
             return None
         return obj.prazo.strftime("%d/%m/%Y")
     
-    def dias_prazo(self, obj):
+    def dias_para_prazo(self, obj):
         if not obj.prazo:
             return None
         

@@ -77,9 +77,11 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         return Response({
             "mensagem": "Tarefa concluída com sucesso",
+            "data": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em
+            }
         })
     
     @action(detail=True, methods=['patch'], pagination_class=None)
@@ -104,9 +106,11 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         return Response({
             "mensagem": "Tarefa reaberta com sucesso",
+            "data": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em
+            }
         })
     
     @action(detail=True, methods=['patch'], pagination_class=None)
@@ -125,9 +129,11 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         return Response({
             "mensagem": "Tarefa dispensada com sucesso",
+            "data": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em
+            }
         })
 
 @api_view(['GET'])
@@ -157,7 +163,7 @@ def dashboard_api(request):
         })
 
     return Response({
-        "empresas": resultado
+        "results": resultado
     })
 
 @api_view(['GET'])

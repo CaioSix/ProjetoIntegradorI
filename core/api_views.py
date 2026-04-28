@@ -135,7 +135,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
             "concluida_em": tarefa.concluida_em
             }
         })
-
+    
 @api_view(['GET'])
 def dashboard_api(request):
     empresas = Empresa.objects.prefetch_related(
@@ -167,7 +167,7 @@ def dashboard_api(request):
     })
 
 @api_view(['GET'])
-def tarefas_geral(request):
+def tarefas_pendentes(request):
     hoje = timezone.localdate()
     limite = hoje + timedelta(days=7)
 

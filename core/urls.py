@@ -8,7 +8,7 @@ from .api_views import (
     TarefaViewSet,
     LoginView,
     dashboard_api,
-    tarefas_geral,
+    tarefas_pendentes,
 )
 from django.contrib.auth import views as auth_views
 from knox import views as knox_views
@@ -26,7 +26,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('api/dashboard/', dashboard_api),
-    path('api/tarefas_geral/', tarefas_geral),
+    path('api/tarefas/pendentes/', tarefas_pendentes),
     path('api/', include(router.urls)),
     path('api/login/', LoginView.as_view()),
     path('api/logout/', knox_views.LogoutView.as_view()),

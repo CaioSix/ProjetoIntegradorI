@@ -59,9 +59,6 @@ class TarefaSerializer(serializers.ModelSerializer):
 
 class TarefaDashboardSerializer(serializers.ModelSerializer):
     obrigacao_nome =serializers.CharField(source='obrigacao.nome')
-    obrigacao_id = serializers.IntegerField(source='obrigacao_id')
-    empresa_id = serializers.IntegerField(source='empresa_id')
-    
 
     class Meta:
         model = Tarefa

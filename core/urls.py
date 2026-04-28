@@ -12,6 +12,10 @@ from .api_views import (
 )
 from django.contrib.auth import views as auth_views
 from knox import views as knox_views
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+)
 
 router = DefaultRouter()
 router.register(r'empresas', EmpresaViewSet)
@@ -30,4 +34,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/login/', LoginView.as_view()),
     path('api/logout/', knox_views.LogoutView.as_view()),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]

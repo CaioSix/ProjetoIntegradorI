@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'knox',
+    'drf_spectacular',
     'core',
 ]
 
@@ -137,4 +138,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
+    'DEFAULT_SCHEMA_CLASS': 
+        'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API Controle de Tarefas',
+    'DESCRIPTION': 'API para gestão de tarefas contábeis',
+    'VERSION': '1.0.0',
 }

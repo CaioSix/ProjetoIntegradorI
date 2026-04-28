@@ -25,6 +25,7 @@ class TarefaSerializer(serializers.ModelSerializer):
     obrigacao_id = serializers.IntegerField(source='obrigacao.id', read_only=True)
     status_prazo = serializers.SerializerMethodField(method_name='calcular_prazo_status', read_only=True)
     prazo_formatado = serializers.SerializerMethodField(method_name='formata_prazo', read_only=True)
+    dias_prazo = serializers.SerializerMethodField(method_name='dias_prazo')
 
     class Meta:
         model = Tarefa
@@ -47,6 +48,13 @@ class TarefaSerializer(serializers.ModelSerializer):
         if not obj.prazo:
             return None
         return obj.prazo.strftime("%d/%m/%Y")
+    
+    def dias_prazo(self, obj):
+        if not obj.prazo:
+            return None
+        
+        hoje = timezone.localdate()
+        return (obj.prazo - hoje).days
 
 class TarefaDashboardSerializer(serializers.ModelSerializer):
     obrigacao_nome =serializers.CharField(source='obrigacao.nome')

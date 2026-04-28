@@ -154,8 +154,8 @@ def dashboard_api(request):
         tarefas = empresa.tarefas.all()
 
         resultado.append({
-            "id": empresa.id,
-            "nome": empresa.nome,
+            "empresa_id": empresa.id,
+            "empresa_nome": empresa.nome,
             "tipo": empresa.tipo,
             "pendentes": tarefas.filter(status='PENDENTE').count(),
             "concluidas": tarefas.filter(status='CONCLUIDA').count(),

@@ -61,13 +61,13 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         if tarefa.status == 'CONCLUIDA':
             return Response(
-                {"mensagem": "Tarefa já está concluída"},
+                {"message": "Tarefa já está concluída"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
         if tarefa.status == 'DISPENSADA':
             return Response(
-                {"mensagem": "Tarefa dispensada não pode ser reaberta"},
+                {"message": "Tarefa dispensada não pode ser reaberta"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
@@ -76,8 +76,8 @@ class TarefaViewSet(viewsets.ModelViewSet):
         tarefa.save()
 
         return Response({
-            "mensagem": "Tarefa concluída com sucesso",
-            "dados": {
+            "message": "Tarefa concluída com sucesso",
+            "data": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em
@@ -90,13 +90,13 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         if tarefa.status == 'PENDENTE':
             return Response(
-                {"mensagem": "Tarefa já está pendente"},
+                {"message": "Tarefa já está pendente"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
         if tarefa.status == 'DISPENSADA':
             return Response(
-                {"mensagem": "Tarefa dispensada não pode ser reaberta"},
+                {"message": "Tarefa dispensada não pode ser reaberta"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
@@ -105,8 +105,8 @@ class TarefaViewSet(viewsets.ModelViewSet):
         tarefa.save()
 
         return Response({
-            "mensagem": "Tarefa reaberta com sucesso",
-            "dados": {
+            "message": "Tarefa reaberta com sucesso",
+            "data": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em
@@ -119,7 +119,7 @@ class TarefaViewSet(viewsets.ModelViewSet):
 
         if tarefa.status == 'DISPENSADA':
             return Response(
-                {"mensagem": "Tarefa já está dispensada"},
+                {"message": "Tarefa já está dispensada"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
@@ -128,8 +128,8 @@ class TarefaViewSet(viewsets.ModelViewSet):
         tarefa.save()
 
         return Response({
-            "mensagem": "Tarefa dispensada com sucesso",
-            "dados": {
+            "message": "Tarefa dispensada com sucesso",
+            "data": {
             "id": tarefa.id,
             "status": tarefa.status,
             "concluida_em": tarefa.concluida_em

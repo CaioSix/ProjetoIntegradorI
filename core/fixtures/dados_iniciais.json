@@ -1,0 +1,805 @@
+[
+{
+    "model": "core.empresa",
+    "pk": 4,
+    "fields": {
+        "nome": "Alpha Contábil",
+        "codigo": "EMP001",
+        "tipo": "SN_COM_FOLHA",
+        "criada_em": "2026-04-16T04:27:33.772Z",
+        "atualizada_em": "2026-04-16T04:27:33.772Z"
+    }
+},
+{
+    "model": "core.empresa",
+    "pk": 5,
+    "fields": {
+        "nome": "Beta Serviços",
+        "codigo": "EMP002",
+        "tipo": "MEI",
+        "criada_em": "2026-04-16T04:27:33.775Z",
+        "atualizada_em": "2026-04-16T04:27:33.775Z"
+    }
+},
+{
+    "model": "core.empresa",
+    "pk": 6,
+    "fields": {
+        "nome": "Gamma Comércio",
+        "codigo": "EMP003",
+        "tipo": "SN_SEM_FOLHA",
+        "criada_em": "2026-04-16T04:27:33.778Z",
+        "atualizada_em": "2026-04-16T04:27:33.778Z"
+    }
+},
+{
+    "model": "core.empresa",
+    "pk": 7,
+    "fields": {
+        "nome": "Delta Indústria",
+        "codigo": "EMP004",
+        "tipo": "LUCRO_PRESUMIDO",
+        "criada_em": "2026-04-16T04:27:33.781Z",
+        "atualizada_em": "2026-04-16T04:27:33.781Z"
+    }
+},
+{
+    "model": "core.empresa",
+    "pk": 9,
+    "fields": {
+        "nome": "Rio Grandense",
+        "codigo": "111222333",
+        "tipo": "LUCRO_PRESUMIDO",
+        "criada_em": "2026-04-16T05:28:30.999Z",
+        "atualizada_em": "2026-04-16T05:28:30.999Z"
+    }
+},
+{
+    "model": "core.empresa",
+    "pk": 10,
+    "fields": {
+        "nome": "Anabelle S.A.",
+        "codigo": "223344",
+        "tipo": "LUCRO_PRESUMIDO",
+        "criada_em": "2026-04-17T20:26:23.953Z",
+        "atualizada_em": "2026-04-17T20:26:23.953Z"
+    }
+},
+{
+    "model": "core.empresa",
+    "pk": 11,
+    "fields": {
+        "nome": "Dali Llama",
+        "codigo": "12341234",
+        "tipo": "LUCRO_PRESUMIDO",
+        "criada_em": "2026-04-18T02:20:57.125Z",
+        "atualizada_em": "2026-04-18T02:20:57.125Z"
+    }
+},
+{
+    "model": "core.empresa",
+    "pk": 12,
+    "fields": {
+        "nome": "Nox",
+        "codigo": "808080",
+        "tipo": "LUCRO_PRESUMIDO",
+        "criada_em": "2026-04-20T01:57:00.124Z",
+        "atualizada_em": "2026-04-20T01:57:00.124Z"
+    }
+},
+{
+    "model": "core.empresa",
+    "pk": 13,
+    "fields": {
+        "nome": "W-MAX",
+        "codigo": "cod111",
+        "tipo": "SN_COM_FOLHA",
+        "criada_em": "2026-04-26T20:30:50.485Z",
+        "atualizada_em": "2026-04-26T20:30:50.485Z"
+    }
+},
+{
+    "model": "core.competencia",
+    "pk": 4,
+    "fields": {
+        "mes": 4,
+        "ano": 2026,
+        "criada_em": "2026-04-17T20:12:25.599Z"
+    }
+},
+{
+    "model": "core.obrigacao",
+    "pk": 16,
+    "fields": {
+        "nome": "INSS",
+        "dia_vencimento": 20,
+        "criada_em": "2026-04-17T15:57:17.191Z",
+        "atualizada_em": "2026-04-17T15:57:17.191Z"
+    }
+},
+{
+    "model": "core.obrigacao",
+    "pk": 17,
+    "fields": {
+        "nome": "FGTS",
+        "dia_vencimento": 7,
+        "criada_em": "2026-04-17T15:57:26.843Z",
+        "atualizada_em": "2026-04-17T15:57:26.843Z"
+    }
+},
+{
+    "model": "core.obrigacao",
+    "pk": 18,
+    "fields": {
+        "nome": "DAS",
+        "dia_vencimento": 20,
+        "criada_em": "2026-04-17T15:57:45.720Z",
+        "atualizada_em": "2026-04-17T15:57:45.720Z"
+    }
+},
+{
+    "model": "core.obrigacao",
+    "pk": 19,
+    "fields": {
+        "nome": "SPED ICMS",
+        "dia_vencimento": 20,
+        "criada_em": "2026-04-17T15:58:03.172Z",
+        "atualizada_em": "2026-04-17T15:58:03.172Z"
+    }
+},
+{
+    "model": "core.obrigacao",
+    "pk": 20,
+    "fields": {
+        "nome": "SPED PIS/COFINS",
+        "dia_vencimento": 20,
+        "criada_em": "2026-04-17T15:58:15.513Z",
+        "atualizada_em": "2026-04-17T15:58:15.514Z"
+    }
+},
+{
+    "model": "core.obrigacao",
+    "pk": 21,
+    "fields": {
+        "nome": "GUIA PARCELAMENTO",
+        "dia_vencimento": null,
+        "criada_em": "2026-04-17T15:58:24.545Z",
+        "atualizada_em": "2026-04-17T15:58:24.545Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 28,
+    "fields": {
+        "empresa": 4,
+        "competencia": 4,
+        "obrigacao": 16,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.616Z",
+        "atualizada_em": "2026-04-17T20:12:25.616Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 29,
+    "fields": {
+        "empresa": 4,
+        "competencia": 4,
+        "obrigacao": 17,
+        "status": "DISPENSADA",
+        "prazo": "2026-04-07",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.624Z",
+        "atualizada_em": "2026-04-21T02:05:51.897Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 30,
+    "fields": {
+        "empresa": 4,
+        "competencia": 4,
+        "obrigacao": 18,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.630Z",
+        "atualizada_em": "2026-04-17T20:12:25.630Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 31,
+    "fields": {
+        "empresa": 4,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "PENDENTE",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.635Z",
+        "atualizada_em": "2026-04-17T20:12:25.635Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 32,
+    "fields": {
+        "empresa": 5,
+        "competencia": 4,
+        "obrigacao": 18,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.640Z",
+        "atualizada_em": "2026-04-17T20:12:25.640Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 33,
+    "fields": {
+        "empresa": 5,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "PENDENTE",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.646Z",
+        "atualizada_em": "2026-04-17T20:12:25.646Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 34,
+    "fields": {
+        "empresa": 6,
+        "competencia": 4,
+        "obrigacao": 18,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.652Z",
+        "atualizada_em": "2026-04-17T20:12:25.652Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 35,
+    "fields": {
+        "empresa": 6,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "PENDENTE",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.657Z",
+        "atualizada_em": "2026-04-17T20:12:25.657Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 36,
+    "fields": {
+        "empresa": 7,
+        "competencia": 4,
+        "obrigacao": 16,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.664Z",
+        "atualizada_em": "2026-04-17T20:12:25.664Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 37,
+    "fields": {
+        "empresa": 7,
+        "competencia": 4,
+        "obrigacao": 17,
+        "status": "PENDENTE",
+        "prazo": "2026-04-07",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.669Z",
+        "atualizada_em": "2026-04-17T20:12:25.669Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 38,
+    "fields": {
+        "empresa": 7,
+        "competencia": 4,
+        "obrigacao": 19,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.674Z",
+        "atualizada_em": "2026-04-17T20:12:25.674Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 39,
+    "fields": {
+        "empresa": 7,
+        "competencia": 4,
+        "obrigacao": 20,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.680Z",
+        "atualizada_em": "2026-04-17T20:12:25.680Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 40,
+    "fields": {
+        "empresa": 7,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "PENDENTE",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.684Z",
+        "atualizada_em": "2026-04-17T20:12:25.684Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 41,
+    "fields": {
+        "empresa": 9,
+        "competencia": 4,
+        "obrigacao": 16,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.690Z",
+        "atualizada_em": "2026-04-17T20:12:25.690Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 42,
+    "fields": {
+        "empresa": 9,
+        "competencia": 4,
+        "obrigacao": 17,
+        "status": "PENDENTE",
+        "prazo": "2026-04-07",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.695Z",
+        "atualizada_em": "2026-04-17T20:12:25.695Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 43,
+    "fields": {
+        "empresa": 9,
+        "competencia": 4,
+        "obrigacao": 19,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.700Z",
+        "atualizada_em": "2026-04-17T20:12:25.700Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 44,
+    "fields": {
+        "empresa": 9,
+        "competencia": 4,
+        "obrigacao": 20,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.705Z",
+        "atualizada_em": "2026-04-17T20:12:25.705Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 45,
+    "fields": {
+        "empresa": 9,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "PENDENTE",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:12:25.710Z",
+        "atualizada_em": "2026-04-17T20:12:25.710Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 46,
+    "fields": {
+        "empresa": 10,
+        "competencia": 4,
+        "obrigacao": 16,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:26:23.965Z",
+        "atualizada_em": "2026-04-17T20:26:23.965Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 47,
+    "fields": {
+        "empresa": 10,
+        "competencia": 4,
+        "obrigacao": 17,
+        "status": "PENDENTE",
+        "prazo": "2026-04-07",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:26:23.968Z",
+        "atualizada_em": "2026-04-17T20:26:23.968Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 48,
+    "fields": {
+        "empresa": 10,
+        "competencia": 4,
+        "obrigacao": 19,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:26:23.970Z",
+        "atualizada_em": "2026-04-17T20:26:23.970Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 49,
+    "fields": {
+        "empresa": 10,
+        "competencia": 4,
+        "obrigacao": 20,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:26:23.973Z",
+        "atualizada_em": "2026-04-17T20:26:23.973Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 50,
+    "fields": {
+        "empresa": 10,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "CONCLUIDA",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-17T20:26:23.975Z",
+        "atualizada_em": "2026-04-18T02:31:12.861Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 51,
+    "fields": {
+        "empresa": 11,
+        "competencia": 4,
+        "obrigacao": 16,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-18T02:20:57.134Z",
+        "atualizada_em": "2026-04-18T02:20:57.134Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 52,
+    "fields": {
+        "empresa": 11,
+        "competencia": 4,
+        "obrigacao": 17,
+        "status": "PENDENTE",
+        "prazo": "2026-04-07",
+        "concluida_em": null,
+        "criada_em": "2026-04-18T02:20:57.139Z",
+        "atualizada_em": "2026-04-18T02:20:57.139Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 53,
+    "fields": {
+        "empresa": 11,
+        "competencia": 4,
+        "obrigacao": 19,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-18T02:20:57.143Z",
+        "atualizada_em": "2026-04-18T02:20:57.144Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 54,
+    "fields": {
+        "empresa": 11,
+        "competencia": 4,
+        "obrigacao": 20,
+        "status": "CONCLUIDA",
+        "prazo": "2026-04-20",
+        "concluida_em": "2026-04-20",
+        "criada_em": "2026-04-18T02:20:57.149Z",
+        "atualizada_em": "2026-04-21T01:49:58.081Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 55,
+    "fields": {
+        "empresa": 11,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "PENDENTE",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-18T02:20:57.154Z",
+        "atualizada_em": "2026-04-18T02:20:57.154Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 56,
+    "fields": {
+        "empresa": 12,
+        "competencia": 4,
+        "obrigacao": 16,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-20T01:57:00.133Z",
+        "atualizada_em": "2026-04-20T01:57:00.133Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 57,
+    "fields": {
+        "empresa": 12,
+        "competencia": 4,
+        "obrigacao": 17,
+        "status": "PENDENTE",
+        "prazo": "2026-04-07",
+        "concluida_em": null,
+        "criada_em": "2026-04-20T01:57:00.137Z",
+        "atualizada_em": "2026-04-20T01:57:00.137Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 58,
+    "fields": {
+        "empresa": 12,
+        "competencia": 4,
+        "obrigacao": 19,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-20T01:57:00.139Z",
+        "atualizada_em": "2026-04-20T01:57:00.139Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 59,
+    "fields": {
+        "empresa": 12,
+        "competencia": 4,
+        "obrigacao": 20,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-20T01:57:00.144Z",
+        "atualizada_em": "2026-04-20T01:57:00.144Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 60,
+    "fields": {
+        "empresa": 12,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "PENDENTE",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-20T01:57:00.147Z",
+        "atualizada_em": "2026-04-20T01:57:00.147Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 61,
+    "fields": {
+        "empresa": 13,
+        "competencia": 4,
+        "obrigacao": 16,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-26T20:30:50.503Z",
+        "atualizada_em": "2026-04-26T20:30:50.503Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 62,
+    "fields": {
+        "empresa": 13,
+        "competencia": 4,
+        "obrigacao": 17,
+        "status": "PENDENTE",
+        "prazo": "2026-04-07",
+        "concluida_em": null,
+        "criada_em": "2026-04-26T20:30:50.508Z",
+        "atualizada_em": "2026-04-26T20:30:50.508Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 63,
+    "fields": {
+        "empresa": 13,
+        "competencia": 4,
+        "obrigacao": 18,
+        "status": "PENDENTE",
+        "prazo": "2026-04-20",
+        "concluida_em": null,
+        "criada_em": "2026-04-26T20:30:50.514Z",
+        "atualizada_em": "2026-04-26T20:30:50.514Z"
+    }
+},
+{
+    "model": "core.tarefa",
+    "pk": 64,
+    "fields": {
+        "empresa": 13,
+        "competencia": 4,
+        "obrigacao": 21,
+        "status": "PENDENTE",
+        "prazo": null,
+        "concluida_em": null,
+        "criada_em": "2026-04-26T20:30:50.519Z",
+        "atualizada_em": "2026-04-26T20:30:50.519Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 27,
+    "fields": {
+        "tipo_empresa": "SN_COM_FOLHA",
+        "obrigacao": 16,
+        "criada_em": "2026-04-17T16:10:34.485Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 28,
+    "fields": {
+        "tipo_empresa": "LUCRO_PRESUMIDO",
+        "obrigacao": 16,
+        "criada_em": "2026-04-17T16:10:34.490Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 29,
+    "fields": {
+        "tipo_empresa": "SN_COM_FOLHA",
+        "obrigacao": 17,
+        "criada_em": "2026-04-17T16:10:34.494Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 30,
+    "fields": {
+        "tipo_empresa": "LUCRO_PRESUMIDO",
+        "obrigacao": 17,
+        "criada_em": "2026-04-17T16:10:34.496Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 31,
+    "fields": {
+        "tipo_empresa": "SN_COM_FOLHA",
+        "obrigacao": 18,
+        "criada_em": "2026-04-17T16:10:34.499Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 32,
+    "fields": {
+        "tipo_empresa": "SN_SEM_FOLHA",
+        "obrigacao": 18,
+        "criada_em": "2026-04-17T16:10:34.501Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 33,
+    "fields": {
+        "tipo_empresa": "MEI",
+        "obrigacao": 18,
+        "criada_em": "2026-04-17T16:10:34.503Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 34,
+    "fields": {
+        "tipo_empresa": "LUCRO_PRESUMIDO",
+        "obrigacao": 19,
+        "criada_em": "2026-04-17T16:10:34.506Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 35,
+    "fields": {
+        "tipo_empresa": "LUCRO_PRESUMIDO",
+        "obrigacao": 20,
+        "criada_em": "2026-04-17T16:10:34.509Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 36,
+    "fields": {
+        "tipo_empresa": "SN_COM_FOLHA",
+        "obrigacao": 21,
+        "criada_em": "2026-04-17T16:10:34.512Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 37,
+    "fields": {
+        "tipo_empresa": "SN_SEM_FOLHA",
+        "obrigacao": 21,
+        "criada_em": "2026-04-17T16:10:34.514Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 38,
+    "fields": {
+        "tipo_empresa": "MEI",
+        "obrigacao": 21,
+        "criada_em": "2026-04-17T16:10:34.517Z"
+    }
+},
+{
+    "model": "core.tipoempresaobrigacao",
+    "pk": 39,
+    "fields": {
+        "tipo_empresa": "LUCRO_PRESUMIDO",
+        "obrigacao": 21,
+        "criada_em": "2026-04-17T16:10:34.519Z"
+    }
+}
+]

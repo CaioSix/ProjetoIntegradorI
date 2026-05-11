@@ -1,0 +1,59 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #8d2a2a;
+  position: relative;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.page-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 30px;
+  border-radius: 12px;
+  background: #111827;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+}
+
+.page-title {
+  text-align: center;
+  color: white;
+  margin-bottom: 25px;
+  font-size: clamp(18px, 4vw, 24px);
+}
+
+.page-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.page-logo {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 200px;
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .page-logo {
+    display: none;
+  }
+
+  .page-card {
+    padding: 24px 16px;
+  }
+}

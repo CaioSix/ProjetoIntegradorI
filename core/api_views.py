@@ -40,14 +40,17 @@ class LoginView(KnoxLoginView):
 class EmpresaViewSet(viewsets.ModelViewSet):
     queryset = Empresa.objects.all().order_by('nome')
     serializer_class = EmpresaSerializer
+    pagination_class = None
 
 class CompetenciaViewSet(viewsets.ModelViewSet):
     queryset = Competencia.objects.all()
     serializer_class = CompetenciaSerializer
+    pagination_class = None
 
 class ObrigacaoViewSet(viewsets.ModelViewSet):
     queryset = Obrigacao.objects.all()
     serializer_class = ObrigacaoSerializer
+    pagination_class = None
 
 class TarefaViewSet(viewsets.ModelViewSet):
     queryset = Tarefa.objects.select_related('empresa', 'obrigacao', 'competencia').order_by(F('prazo').asc(nulls_last=True))

@@ -1,0 +1,28 @@
+services:
+  backend:
+    image: caiohenriquecal/contabil-backend:latest
+    container_name: contabil_backend
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_SECRET_KEY: django-docker-secret-key-mude-em-producao
+      DJANGO_DEBUG: "True"
+      DJANGO_ALLOWED_HOSTS: "*"
+      DATABASE_PATH: /data/db.sqlite3
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_PASSWORD: admin123
+    volumes:
+      - db_data:/data
+    restart: unless-stopped
+
+  frontend:
+    image: caiohenriquecal/contabil-frontend:latest
+    container_name: contabil_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  db_data:

@@ -66,3 +66,16 @@ htmlcov/
 # =========================
 *.bak
 *.old
+
+# =========================
+# LATEX (auxiliares)
+# =========================
+documentacao/*.aux
+documentacao/*.out
+documentacao/*.toc
+documentacao/*.log
+
+# =========================
+# DOCUMENTOS WORD
+# =========================
+*.docx

@@ -1,5 +1,5 @@
-Destaques da pasta
-Projeto Integrador I foca em baixar arquivos XML de notas fiscais com um plano de ação que inicia em Fev 2026 e um código-fonte de automação.
+# Destaques da pasta
+# Projeto Integrador I foca em baixar arquivos XML de notas fiscais com um plano de ação que inicia em Fev 2026 e um código-fonte de automação.
 
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox

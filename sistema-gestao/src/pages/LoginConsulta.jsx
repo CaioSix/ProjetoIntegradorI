@@ -29,6 +29,10 @@ export default function LoginConsulta() {
         Não precisa instalar nada além do Docker.
       </p> */}
 
+      <a href={S3_URL_DOC} download style={styles.downloadBtn}>
+        Baixar Documentação
+      </a>
+
       <a href={S3_URL_COMPOSE} download="docker-compose.yml" style={styles.downloadBtn}>
         Baixar docker-compose.yml
       </a>
@@ -63,13 +67,11 @@ export default function LoginConsulta() {
 
       {/* <a href={S3_URL} download style={styles.downloadBtn}>
         Baixar Sistema (.zip)
-      </a>
+      </a> */}
 
-      <a href={S3_URL_DOC} download style={styles.downloadBtn}>
-        Baixar Documentação
-      </a>
+      
 
-      <div style={styles.instructions}>
+      {/* <div style={styles.instructions}>
         <p style={styles.instructionsTitle}>Como instalar:</p>
         {steps.map((step, i) => (
           <p key={i} style={styles.step}>
